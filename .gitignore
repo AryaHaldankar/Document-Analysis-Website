@@ -1,15 +1,22 @@
-# Node.js
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Node.js (Frontend and Backend)
+**/node_modules/
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
 
-# Build output
-dist/
-bundle.js
+# Build output (Frontend)
+frontend/dist/
+frontend/bundle.js
 
-# Environment variables
+# Build output (if backend builds too)
+backend/dist/
+backend/bundle.js
+
+# Environment variables (commonly used in backend too)
 .env
+.env.local
+.env.production
+.env.development
 
 # Firebase config & emulators
 .firebaserc
@@ -18,13 +25,21 @@ apphosting.emulator.yaml
 firestore.rules
 firestore.indexes.json
 
-# VS Code settings (optional)
+# VS Code settings
 .vscode/
 
-# macOS system files (optional but common)
+# macOS system files
 .DS_Store
 
 # Logs
 logs/
 *.log
-
+backend/docanpr-*-firebase-adminsdk-*.json
+backend/*.exe
+backend/*.out
+backend/*.test
+backend/bin/
+backend/dist/
+backend/*.log
+backend/.DS_Store
+backend/Thumbs.db

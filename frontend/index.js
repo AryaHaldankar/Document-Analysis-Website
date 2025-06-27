@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, connectAuthEmulator, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import {createAuthUI} from "./ui.js";
 import './styles.css';
 
@@ -20,14 +20,45 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app)
-connectAuthEmulator(auth, "http://localhost:9099")
+
+const verifyUser = async (userCredential) => {
+  try {
+    // Get the Firebase ID token
+    const idToken = await userCredential.user.getIdToken();
+
+    // Send the token to your backend
+    const response = await fetch("http://localhost:8080/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ usr_id: idToken }), // Match expected Go struct field
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Server error");
+    }
+
+    console.log("✅ Backend login success:", data);
+    return data;
+  } catch (error) {
+    console.error("❌ verifyUser error:", error);
+    return { success: false, error: error.message };
+  }
+};
+
+
 const loginEmailPassword = async (loginEmail, loginPassword) => {
   const userCredential = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
-  console.log(userCredential.user)
+  console.log(userCredential.user);
+  const verification = await verifyUser(userCredential);
 }
 const signupEmailPassword = async (signupEmail, signupPassword) => {
   const userCredential = await createUserWithEmailAndPassword(auth, signupEmail, signupPassword);
-  console.log(userCredential.user)
+  console.log(userCredential.user);
+  const verification = await verifyUser(userCredential);
 }
 const logOut = async () =>{
   await signOut(auth);
