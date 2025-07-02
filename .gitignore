@@ -43,3 +43,4 @@ backend/dist/
 backend/*.log
 backend/.DS_Store
 backend/Thumbs.db
+server/serverapp/docanpr-890f4-firebase-adminsdk-fbsvc-e554b19dce.json
