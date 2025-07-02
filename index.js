@@ -27,12 +27,12 @@ const verifyUser = async (userCredential) => {
     const idToken = await userCredential.user.getIdToken();
 
     // Send the token to your backend
-    const response = await fetch("http://localhost:8080/login", {
+    const response = await fetch("http://localhost:5000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ usr_id: idToken }), // Match expected Go struct field
+      body: JSON.stringify({ user_id: idToken }), 
     });
 
     const data = await response.json();
