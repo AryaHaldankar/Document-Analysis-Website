@@ -1,46 +1,46 @@
-# Node.js (Frontend and Backend)
-**/node_modules/
-**/npm-debug.log*
-**/yarn-debug.log*
-**/yarn-error.log*
+# === Python / Django ===
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.log
+*.bak
 
-# Build output (Frontend)
-frontend/dist/
-frontend/bundle.js
+# Django admin/secret JSON credentials
+*.json
+!package.json
+!firebase.json
 
-# Build output (if backend builds too)
-backend/dist/
-backend/bundle.js
+# === ChromaDB binary files ===
+server/serverapp/uploads/
+*.bin
 
-# Environment variables (commonly used in backend too)
-.env
-.env.local
-.env.production
-.env.development
-
-# Firebase config & emulators
+# === Firebase ===
 .firebaserc
-firebase-debug.log
-apphosting.emulator.yaml
 firestore.rules
 firestore.indexes.json
 
-# VS Code settings
-.vscode/
+# === Node / Frontend ===
+node_modules/
+dist/
+bundle.js
+*.lock
 
-# macOS system files
+# === Webpack / Build ===
+webpack.config.js
+*.map
+
+# === Environment / Secrets ===
+.env
+.env.*
+
+# === OS / Editor files ===
 .DS_Store
+*.swp
+*.swo
+Thumbs.db
+.vscode/
+.idea/
 
-# Logs
-logs/
-*.log
-backend/docanpr-*-firebase-adminsdk-*.json
-backend/*.exe
-backend/*.out
-backend/*.test
-backend/bin/
-backend/dist/
-backend/*.log
-backend/.DS_Store
-backend/Thumbs.db
-server/serverapp/docanpr-890f4-firebase-adminsdk-fbsvc-e554b19dce.json
+# === Misc ===
+*.tmp
+
