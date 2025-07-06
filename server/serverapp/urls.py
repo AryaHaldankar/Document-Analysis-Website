@@ -3,5 +3,6 @@ from . import views
 
 urlpatterns = [
     path('uploadDoc/', views.uploadDocument, name = 'uploadDocument'),
-    path('getDoc/', views.getDocument, name = 'getDocument')
+    path('getResponse/', views.getLLMResponse, name = 'getLLMResponse'),
+    path('getDocs/', views.getDocumentList, name = 'getDocumentList')
 ]
